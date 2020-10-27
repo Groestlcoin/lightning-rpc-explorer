@@ -3,11 +3,6 @@ var coins = require("./coins.js");
 var currentCoin = "GRS";
 
 var credentials = require("./defaultCredentials.js");
-var overwriteCredentials = require("./credentials.js");
-
-for (var key in overwriteCredentials) {
-	credentials[key] = overwriteCredentials[key];
-}
 
 module.exports = {
 	cookiePassword: credentials.cookiePassword,
