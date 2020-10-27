@@ -2,7 +2,7 @@ extends layout
 
 block headContent
 	title Lightning Explorer
-	
+
 block content
 	h1(class="h2") Lightning Explorer
 	hr
@@ -15,22 +15,22 @@ block content
 			div(class="alert alert-primary alert-dismissible shadow-sm", role="alert")
 				p
 					strong Lightning Explorer
-					span  is 
-					a(href="https://github.com/janoside/lightning-rpc-explorer") open-source
-					span  and easy to set up. It can communicate with your lightning node via gRPC. See the 
-					a(href="https://github.com/janoside/lightning-rpc-explorer") project description
+					span  is
+					a(href="https://github.com/groestlcoin/lightning-rpc-explorer") open-source
+					span  and easy to set up. It can communicate with your lightning node via gRPC. See the
+					a(href="https://github.com/groestlcoin/lightning-rpc-explorer") project description
 					span  for a list of features and instructions for running.
 
 				div(style="height: 34px;")
-					a(class="github-button", href=config.siteInfo.sourceUrl, data-icon="octicon-star", data-size="large", data-show-count="true", aria-label="Star janoside/btc-rpc-explorer on GitHub", style="padding-right: 10px;") Star
+					a(class="github-button", href=config.siteInfo.sourceUrl, data-icon="octicon-star", data-size="large", data-show-count="true", aria-label="Star groestlcoin/btc-rpc-explorer on GitHub", style="padding-right: 10px;") Star
 					
-					span    
-					a(class="github-button", href=(config.siteInfo.sourceUrl + "/fork"), data-icon="octicon-repo-forked", data-size="large", data-show-count="true", aria-label="Fork janoside/btc-rpc-explorer on GitHub") Fork
+					span
+					a(class="github-button", href=(config.siteInfo.sourceUrl + "/fork"), data-icon="octicon-repo-forked", data-size="large", data-show-count="true", aria-label="Fork groestlcoin/btc-rpc-explorer on GitHub") Fork
 
 				a(href="/changeSetting?name=hideHomepageBanner&value=true", class="close", aria-label="Close", style="text-decoration: none;")
 					span(aria-hidden="true") &times;
-				
-		
+
+
 		- var totalCapacity = 0;
 		each item in fullNetworkDescription.channels.sortedByLastUpdate
 			- totalCapacity = totalCapacity + parseInt(item.capacity);
@@ -60,7 +60,7 @@ block content
 			div(class="card-header")
 				div(class="row")
 					div(class="col")
-						h2(class="h6 mb-0") #{fullNetworkDescription.nodes.sortedByLastUpdate.length.toLocaleString()} 
+						h2(class="h6 mb-0") #{fullNetworkDescription.nodes.sortedByLastUpdate.length.toLocaleString()}
 							if (fullNetworkDescription.nodes.sortedByLastUpdate.length == 1)
 								span Node
 							else
@@ -97,7 +97,7 @@ block content
 			div(class="card-header")
 				div(class="row")
 					div(class="col")
-						h2(class="h6 mb-0") #{fullNetworkDescription.channels.sortedByLastUpdate.length.toLocaleString()} 
+						h2(class="h6 mb-0") #{fullNetworkDescription.channels.sortedByLastUpdate.length.toLocaleString()}
 							if (fullNetworkDescription.channels.sortedByLastUpdate.length == 1)
 								span Channel
 							else

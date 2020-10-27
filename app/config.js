@@ -1,6 +1,6 @@
 var coins = require("./coins.js");
 
-var currentCoin = "BTC";
+var currentCoin = "GRS";
 
 var credentials = require("./defaultCredentials.js");
 var overwriteCredentials = require("./credentials.js");
@@ -15,8 +15,8 @@ module.exports = {
 
 	siteInfo: {
 		title: "Lightning Explorer",
-		sourceUrl: "https://github.com/janoside/lightning-rpc-explorer",
-		demoSiteUrl: "https://lightning.chaintools.io"
+		sourceUrl: "https://github.com/Groestlcoin/lightning-rpc-explorer",
+		demoSiteUrl: "https://lightningexplorer.groestlcoin.org"
 	},
 
 	demoSite: true,
@@ -35,20 +35,17 @@ module.exports = {
 	},
 
 	donationAddresses:{
-		coins:["BTC", "LTC"],
+		coins:["GRS"],
 
-		"BTC":{address:"3NPGpNyLLmVKCEcuipBs7G4KpQJoJXjDGe", urlPrefix:"bitcoin:"},
-		"LTC":{address:"ME4pXiXuWfEi1ANBDo9irUJVcZBhsTx14i", urlPrefix:"litecoin:"}
+		"GRS":{address:"FWN1qdiRrymSR6jbpbanLYqZpjkEaZouHN", urlPrefix:"groestlcoin:"}
 	},
 
-	blockExplorerUrl:"https://btc.chaintools.io",
+	blockExplorerUrl:"https://lightningexplorer.groestlcoin.org",
 
 	headerDropdownLinks: {
 		title:"Related Sites",
 		links:[
-			{name: "Bitcoin Explorer", url:"https://btc.chaintools.io", imgUrl:"/img/logo/btc.svg"},
-			{name: "Litecoin Explorer", url:"https://ltc.chaintools.io", imgUrl:"/img/logo/ltc.svg"},
-			{name: "Lightning Explorer", url:"https://lightning.chaintools.io", imgUrl:"/img/logo/lightning.svg"},
+			{name: "Lightning Explorer", url:"https://lightningexplorer.groestlcoin.org", imgUrl:"/img/logo/lightning.svg"},
 		]
 	}
 };

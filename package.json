@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/janoside/lightning-rpc-explorer.git"
+    "url": "git+https://github.com/groestlcoin/lightning-rpc-explorer.git"
   },
   "dependencies": {
     "bitcoin-core": "2.0.0",

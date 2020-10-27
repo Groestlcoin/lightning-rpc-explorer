@@ -3,7 +3,7 @@ html
 	head
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no")
-		
+
 		if (session.uiTheme && session.uiTheme == "dark")
 			link(rel="stylesheet", href="/css/bootstrap-dark.css")
 
@@ -11,7 +11,7 @@ html
 				hr { background-color: #555555; }
 		else
 			link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css", integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4", crossorigin="anonymous")
-		
+
 		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Ubuntu:400,700")
 		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css")
 		link(rel='stylesheet', href='/css/styling.css')
@@ -20,17 +20,17 @@ html
 
 		block headContent
 			title #{config.siteInfo.title}
-		
+
 	body
 		nav(class="navbar navbar-expand-lg navbar-dark bg-dark mb-4")
 			div(class="container")
 				a(class="navbar-brand", href="/")
 					img(src="/img/logo/lightning.svg", class="header-image")
 					span #{config.siteInfo.title}
-						
+
 				button(type="button", class="navbar-toggler navbar-toggler-right", data-toggle="collapse", data-target="#navbarNav")
 					span(class="navbar-toggler-icon")
-					
+
 				div(class="collapse navbar-collapse", id="navbarNav")
 					if (client)
 						ul(class="navbar-nav mr-auto")
@@ -40,14 +40,14 @@ html
 
 							if (config.headerDropdownLinks)
 								li(class="nav-item dropdown")
-									a(class="nav-link dropdown-toggle", href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
+									a(class="nav-link dropdown-toggle", href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
 										span  #{config.headerDropdownLinks.title}
 									div(class="dropdown-menu", aria-label=(config.headerDropdownLinks.title + " Items"))
 										each item in config.headerDropdownLinks.links
 											a(class="dropdown-item", href=item.url)
 												img(src=item.imgUrl, style="width: 24px; height: 24px; margin-right: 8px;", alt=item.name)
 												span  #{item.name}
-						
+
 
 						form(method="get", action="/search", class="form-inline mr-3")
 							div(class="input-group input-group-sm")
@@ -58,7 +58,7 @@ html
 
 						ul(class="navbar-nav")
 							li(class="nav-item dropdown")
-								a(class="nav-link dropdown-toggle", href="javascript:void(0)", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
+								a(class="nav-link dropdown-toggle", href="javascript:void(0)", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
 									i(class="fas fa-cog mr-1")
 								div(class="dropdown-menu", aria-labelledby="navbarDropdown")
 									if (coinConfig.currencyUnits)
@@ -81,12 +81,12 @@ html
 										span  Dark
 
 							li(class="nav-item dropdown")
-								a(class="nav-link dropdown-toggle", href="javascript:void(0)", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
+								a(class="nav-link dropdown-toggle", href="javascript:void(0)", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
 									if (session.admin)
-										i(class="fas fa-user mr-1") 
+										i(class="fas fa-user mr-1")
 										span  Admin
 									else
-										i(class="far fa-user mr-1") 
+										i(class="far fa-user mr-1")
 										span  Guest
 
 								div(class="dropdown-menu", aria-labelledby="navbarDropdown")
@@ -126,7 +126,7 @@ html
 							a(href="/rpc-terminal", class="nav-link") RPC Terminal
 
 				hr
-				
+
 		div(class="container")
 			if (userMessage)
 				div(class="alert shadow-sm", class=(userMessageType ? ("alert-"  + userMessageType) : "alert-info"), role="alert")
@@ -135,7 +135,7 @@ html
 			else if (session.userMessage)
 				div(class="alert shadow-sm", class=(session.userMessageType ? ("alert-"  + session.userMessageType) : "alert-info"), role="alert")
 					span !{session.userMessage}
-			
+
 			block content
 
 			footer(class="footer bg-dark text-light pt-3 pb-1 px-3", style="margin-top: 50px;")
@@ -158,7 +158,7 @@ html
 										a(href=config.siteInfo.demoSiteUrl) #{config.siteInfo.demoSiteUrl}
 										
 										div(class="mt-2")
-											- var demoSiteCoins = ["BTC", "LTC"];
+											- var demoSiteCoins = ["GRS"];
 											each demoSiteCoin in demoSiteCoins
 												a(href=coinConfigs[demoSiteCoin].demoSiteUrl, class="mr-2")
 													img(src=("/img/logo/" + demoSiteCoin.toLowerCase() + ".svg"))
@@ -176,12 +176,12 @@ html
 												img(src=donationAddressQrCodeUrls[coin], alt=config.donationAddresses[coin].address, style="border: solid 1px #ccc;")
 												br
 												if (config.donationAddresses[coin].urlPrefix)
-													span #{coin}: 
+													span #{coin}:
 													a(href=(config.donationAddresses[coin].urlPrefix + config.donationAddresses[coin].address)) #{config.donationAddresses[coin].address.substring(0, 10)}...
 												else
 													span #{coin}
-				
-		
+
+
 		script(src="https://code.jquery.com/jquery-3.3.1.min.js", integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", crossorigin="anonymous")
 		script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js", integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ", crossorigin="anonymous")
 		script(src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js", integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb", crossorigin="anonymous")
@@ -191,16 +191,16 @@ html
 		script(type="text/javascript", src="https://cdn.jsdelivr.net/npm/jdenticon@2.1.1")
 
 		script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
-		
+
 		script(src="https://cdn.ravenjs.com/3.22.4/raven.min.js", crossorigin="anonymous")
 		script.
 			Raven.config('https://0bf20e8357a748cab8aa9d35c0f790dd@sentry.io/130800').install();
-			
+
 			$(document).ready(function() {
 				$('[data-toggle="tooltip"]').tooltip();
 				$('[data-toggle="popover"]').popover({html:true});
 			});
 
 			hljs.initHighlightingOnLoad();
-		
+
 		block endOfBody
