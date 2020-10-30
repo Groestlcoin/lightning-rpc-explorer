@@ -137,14 +137,61 @@ module.exports = {
 				}
   },
 	blockRewardFunction:function(blockHeight) {
-		var eras = [ new Decimal8(50) ];
-		for (var i = 1; i < 34; i++) {
-			var previous = eras[i - 1];
-			eras.push(new Decimal8(previous).dividedBy(2));
+		// https://github.com/Groestlcoin/groestlcoin/blob/master/src/groestlcoin.cpp#L59
+		var premine = new Decimal8(240640);
+		var genesisBlockReward = new Decimal8(0);
+		var minimumSubsidy = new Decimal8(5);
+		function GetBlockSubsidy() {
+			var nSubsidy = new Decimal8(512);
+			// Subsidy is reduced by 6% every 10080 blocks, which will occur approximately every 1 week
+			var exponent = Math.floor((blockHeight / 10080));
+			for (var i = 0; i < exponent; i++){
+					nSubsidy = nSubsidy.times(47).dividedBy(50);
+			}
+			if (nSubsidy.lte(minimumSubsidy)) {
+				nSubsidy = minimumSubsidy;
+			}
+			return nSubsidy;
 		}
 
-		var index = Math.floor(blockHeight / 210000);
+		function GetBlockSubsidy120000() {
+			var nSubsidy = new Decimal8(250);
+			// Subsidy is reduced by 10% every day (1440 blocks)
+			var exponent = Math.floor(((blockHeight - 120000) / 1440));
+			for (var i = 0; i < exponent; i++){
+					nSubsidy = nSubsidy.times(45).dividedBy(50);
+			}
+			if (nSubsidy.lte(minimumSubsidy)) {
+				nSubsidy = minimumSubsidy;
+			}
+			return nSubsidy;
+		}
 
-		return eras[index];
+		function GetBlockSubsidy150000() {
+			var nSubsidy = new Decimal8(25);
+			// Subsidy is reduced by 1% every week (10080 blocks)
+			var exponent = Math.floor(((blockHeight - 150000) / 10080));
+			for (var i = 0; i < exponent; i++){
+					nSubsidy = nSubsidy.times(99).dividedBy(100);
+			}
+			if (nSubsidy.lte(minimumSubsidy)) {
+				nSubsidy = minimumSubsidy;
+			}
+			return nSubsidy;
+		}
+
+		if (blockHeight == 0) {
+			return genesisBlockReward;
+		}
+		if (blockHeight == 1) {
+			return premine;
+		}
+		if (blockHeight >= 150000) {
+			return GetBlockSubsidy150000();
+		}
+		if (blockHeight >= 120000) {
+			return GetBlockSubsidy120000();
+		}
+		return GetBlockSubsidy();
 	}
 };
